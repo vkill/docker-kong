@@ -4,9 +4,6 @@ services:
   kong:
     image: "${KONG_DOCKER_TAG:-kong:0.14-alpine}"
     command: kong start --run-migrations
-    depends_on:
-      kong-database:
-        condition: service_healthy
     environment:
       KONG_DATABASE: postgres
       KONG_PG_HOST: kong-database
@@ -19,13 +16,15 @@ services:
       KONG_ADMIN_ACCESS_LOG: /dev/stdout
       KONG_ADMIN_ERROR_LOG: /dev/stderr
       KONG_ADMIN_LISTEN: '0.0.0.0:8001, 0.0.0.0:8444 ssl'
-    links:
-      - kong-database:kong-database
     ports:
       - "80:8000/tcp"
       - "443:8443/tcp"
       - "8001:8001/tcp"
       - "8444:8444/tcp"
+    networks:
+      - kong
+    depends_on:
+      - kong-database
     restart: on-failure
 
   kong-database:
@@ -40,5 +39,8 @@ services:
       timeout: 30s
       retries: 3
     restart: on-failure
-    stdin_open: true
-    tty: true
+    networks:
+      - kong
+
+networks:
+  kong:

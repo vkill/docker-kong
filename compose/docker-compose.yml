@@ -25,7 +25,8 @@ services:
       - kong
     depends_on:
       - kong-database
-    restart: on-failure
+    restart: always
+    pid: host
 
   kong-database:
     image: "${KONG_PG_DOCKER_TAG:-postgres:11-alpine}"
@@ -38,7 +39,8 @@ services:
       interval: 30s
       timeout: 30s
       retries: 3
-    restart: on-failure
+    restart: always
+    pid: host
     networks:
       - kong
 

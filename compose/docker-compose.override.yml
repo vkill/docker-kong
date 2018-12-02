@@ -1,8 +1,22 @@
 version: '3'
 
 services:
+  kong:
+    volumes:
+      - kong_log:/var/log/kong
+    environment:
+      KONG_PROXY_ACCESS_LOG: /var/log/kong/proxy_access.log
+      KONG_PROXY_ERROR_LOG: /var/log/kong/proxy_error.log
+      KONG_ADMIN_ACCESS_LOG: /var/log/kong/admin_access.log
+      KONG_ADMIN_ERROR_LOG: /var/log/kong/admin_error.log
+
   kong-database:
-    command: postgres -c 'config_file=/var/lib/postgresql/data/postgresql.conf'
+    command: postgres -c 'config_file=/var/lib/postgresql/data/postgresql.conf' #-c 'log_statement=all'
+    volumes:
+      - kong_postgres_data:/var/lib/postgresql/data
+      - kong_postgres_log:/var/log/postgresql
+    environment:
+      PGDATA: /var/lib/postgresql/data/db
 
 volumes:
   kong_log:

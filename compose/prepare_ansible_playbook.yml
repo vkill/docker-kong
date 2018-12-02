@@ -11,12 +11,18 @@
         group: "docker"
         mode: 0775
 
+    - name: Check kong_postgres_data_dir exists
+      stat:
+        path: "{{ kong_postgres_data_dir }}"
+      register: kong_postgres_data_dir_stat
+
     - name: Ensure kong_postgres_data_dir exists
       file:
         state: directory
         path: "{{ kong_postgres_data_dir }}"
         group: "docker"
         mode: 0775
+      when: not kong_postgres_data_dir_stat.stat.exists
 
     - name: Ensure kong_postgres_log_dir exists
       file:
@@ -30,6 +36,8 @@
         path: "{{ dotenv_dir }}/.env"
         state: touch
         mode: 0644
+        access_time: preserve
+        modification_time: preserve
 
     - name: Update .env
       lineinfile:

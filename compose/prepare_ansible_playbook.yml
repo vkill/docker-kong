@@ -4,6 +4,27 @@
   become: true
 
   tasks:
+    - name: Ensure kong_log_dir exists
+      file:
+        state: directory
+        path: "{{ kong_log_dir }}"
+        group: "docker"
+        mode: 0775
+
+    - name: Ensure kong_postgres_data_dir exists
+      file:
+        state: directory
+        path: "{{ kong_postgres_data_dir }}"
+        group: "docker"
+        mode: 0775
+
+    - name: Ensure kong_postgres_log_dir exists
+      file:
+        state: directory
+        path: "{{ kong_postgres_log_dir }}"
+        group: "docker"
+        mode: 0777
+
     - name: Touch .env
       file:
         path: "{{ dotenv_dir }}/.env"
@@ -26,4 +47,3 @@
           value: "{{ kong_postgres_log_dir }}"
         - key: "KONG_DASHBOARD_PASSWORD"
           value: "{{ kong_dashboard_password }}"
-

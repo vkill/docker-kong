@@ -1,7 +1,7 @@
 ### Run
 
 ```
-ansible-playbook -i prepare_ansible_hosts -e "@prepare_ansible_var.yml" prepare_ansible_playbook.yml
+ansible-playbook -i ansible_example/hosts -e "@ansible_example/var_prepare.yml" ansible_playbook_prepare.yml
 ```
 
 ```

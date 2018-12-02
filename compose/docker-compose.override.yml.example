@@ -1,0 +1,21 @@
+version: '3'
+
+volumes:
+  kong_log:
+    driver: local
+    driver_opts:
+      type: none
+      device: /tmp/kong_log
+      o: bind
+  kong_postgres_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /tmp/kong_postgres_data
+      o: bind
+  kong_postgres_log:
+    driver: local
+    driver_opts:
+      type: none
+      device: /tmp/kong_postgres_log
+      o: bind

@@ -70,6 +70,10 @@
         regexp: "^{{ item.key }}[\\s]*="
         line: '{{ item.key }} = {{ item.value }}'
       with_items:
+        - key: "listen_addresses"
+          value: "'*'"
+        - key: "external_pid_file"
+          value: "'/var/run/postgresql/postgresql.pid'"
         - key: "log_destination"
           value: "'stderr'"
         - key: "logging_collector"

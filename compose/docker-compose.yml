@@ -21,10 +21,10 @@ services:
     restart: always
     pid: host
     ports:
-      - "80:8000/tcp"
-      - "443:8443/tcp"
-      - "8001:8001/tcp"
-      - "8444:8444/tcp"
+      - "${KONG_PROXY_PORT:-80}:8000/tcp"
+      - "${KONG_PROXY_SSL_PORT:-443}:8443/tcp"
+      - "${KONG_ADMIN_PORT:-8001}:8001/tcp"
+      - "${KONG_ADMIN_SSL_PORT:-8444}:8444/tcp"
     networks:
       - kong
 

@@ -1,5 +1,9 @@
 version: '3'
 
+services:
+  kong-database:
+    command: postgres -c 'config_file=/var/lib/postgresql/data/postgresql.conf'
+
 volumes:
   kong_log:
     driver: local

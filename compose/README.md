@@ -1,11 +1,7 @@
 ### Run
 
 ```
-cp .env.example .env
-
-cp docker-compose.override.yml.example docker-compose.override.yml
-
-bash docker_compose_prepare.sh
+ansible-playbook -i prepare_ansible_hosts -e "@prepare_ansible_var.yml" prepare_ansible_playbook.yml
 ```
 
 ```

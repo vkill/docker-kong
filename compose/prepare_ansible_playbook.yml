@@ -1,0 +1,29 @@
+---
+- name: Docker kong prepare
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Touch .env
+      file:
+        path: "{{ dotenv_dir }}/.env"
+        state: touch
+        mode: 0644
+
+    - name: Update .env
+      lineinfile:
+        path: "{{ dotenv_dir }}/.env"
+        regexp: "^{{ item.key }}="
+        line: '{{ item.key }}={{ item.value }}'
+      with_items:
+        - key: "KONG_LOG_DIR"
+          value: "{{ kong_log_dir }}"
+        - key: "KONG_POSTGRES_PASSWORD"
+          value: "{{ kong_postgres_password }}"
+        - key: "KONG_POSTGRES_DATA_DIR"
+          value: "{{ kong_postgres_data_dir }}"
+        - key: "KONG_POSTGRES_LOG_DIR"
+          value: "{{ kong_postgres_log_dir }}"
+        - key: "KONG_DASHBOARD_PASSWORD"
+          value: "{{ kong_dashboard_password }}"
+

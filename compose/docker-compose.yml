@@ -12,9 +12,9 @@ services:
       KONG_DATABASE: postgres
       KONG_PG_HOST: kong-database
       KONG_CASSANDRA_CONTACT_POINTS: kong-database
-      KONG_PG_DATABASE: ${KONG_PG_DATABASE:-kong}
-      KONG_PG_USER: ${KONG_PG_USER:-kong}
-      KONG_PG_PASSWORD: ${KONG_PG_PASSWORD:-kong}
+      KONG_PG_DATABASE: ${KONG_POSTGRES_DATABASE:-kong}
+      KONG_PG_USER: ${KONG_POSTGRES_USER:-kong}
+      KONG_PG_PASSWORD: ${KONG_POSTGRES_PASSWORD:-kong}
       KONG_PROXY_ACCESS_LOG: /var/log/kong/proxy_access.log
       KONG_PROXY_ERROR_LOG: /var/log/kong/proxy_error.log
       KONG_ADMIN_ACCESS_LOG: /var/log/kong/admin_access.log
@@ -31,18 +31,18 @@ services:
       - kong
 
   kong-database:
-    image: "${KONG_PG_DOCKER_TAG:-postgres:11.1-alpine}"
+    image: "${KONG_POSTGRES_DOCKER_TAG:-postgres:11.1-alpine}"
     command: postgres -c 'log_destination=stderr' -c 'logging_collector=on' -c 'log_directory=/var/log/postgresql' -c 'log_filename=postgresql.log'
     volumes:
       - kong_postgres_data:/var/lib/postgresql/data
       - kong_postgres_log:/var/log/postgresql
     environment:
-      POSTGRES_DB: ${KONG_PG_DATABASE:-kong}
-      POSTGRES_USER: ${KONG_PG_USER:-kong}
-      POSTGRES_PASSWORD: ${KONG_PG_PASSWORD:-kong}
+      POSTGRES_DB: ${KONG_POSTGRES_DATABASE:-kong}
+      POSTGRES_USER: ${KONG_POSTGRES_USER:-kong}
+      POSTGRES_PASSWORD: ${KONG_POSTGRES_PASSWORD:-kong}
       PGDATA: /var/lib/postgresql/data/db
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "${KONG_PG_USER:-kong}"]
+      test: ["CMD", "pg_isready", "-U", "${KONG_POSTGRES_USER:-kong}"]
       interval: 30s
       timeout: 30s
       retries: 3

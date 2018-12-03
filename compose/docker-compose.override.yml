@@ -13,10 +13,7 @@ services:
   kong-database:
     command: postgres -c 'config_file=/var/lib/postgresql/data/postgresql.conf' #-c 'log_statement=all'
     volumes:
-      - kong_postgres_data:/var/lib/postgresql/data
       - kong_postgres_log:/var/log/postgresql
-    environment:
-      PGDATA: /var/lib/postgresql/data/db
 
 volumes:
   kong_log:
@@ -25,15 +22,15 @@ volumes:
       type: none
       device: ${KONG_LOG_DIR:-/tmp/kong_log}
       o: bind
-  kong_postgres_data:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${KONG_POSTGRES_DATA_DIR:-/tmp/kong_postgres_data}
-      o: bind
   kong_postgres_log:
     driver: local
     driver_opts:
       type: none
       device: ${KONG_POSTGRES_LOG_DIR:-/tmp/kong_postgres_log}
+      o: bind
+  kong_postgres_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${KONG_POSTGRES_DATA_DIR:-/tmp/kong_postgres_data}
       o: bind

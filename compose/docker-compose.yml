@@ -30,10 +30,13 @@ services:
 
   kong-database:
     image: "${KONG_POSTGRES_DOCKER_TAG:-postgres:11.1-alpine}"
+    volumes:
+      - kong_postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: ${KONG_POSTGRES_DATABASE:-kong}
       POSTGRES_USER: ${KONG_POSTGRES_USER:-kong}
       POSTGRES_PASSWORD: ${KONG_POSTGRES_PASSWORD:-kong}
+      PGDATA: /var/lib/postgresql/data/db
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "${KONG_POSTGRES_USER:-kong}"]
       interval: 30s
@@ -53,6 +56,9 @@ services:
       - "${KONG_DASHBOARD_PORT:-8080}:8080/tcp"
     networks:
       - kong
+
+volumes:
+  kong_postgres_data:
 
 networks:
   kong:

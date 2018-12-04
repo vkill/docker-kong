@@ -7,3 +7,12 @@ ansible-playbook -i ansible_example/hosts -e "@ansible_example/var_prepare.yml" 
 ```
 docker-compose up
 ```
+
+### Usage
+
+```
+Open http://localhost:8080/
+
+Username: kong
+Password: kong
+```

@@ -11,7 +11,7 @@ docker-compose up
 ### Usage
 
 ```
-open http://localhost:8080/
+xdg-open http://localhost:8080/
 
 Username: kong
 Password: kong

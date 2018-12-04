@@ -11,8 +11,12 @@ docker-compose up
 ### Usage
 
 ```
-Open http://localhost:8080/
+open http://localhost:8080/
 
 Username: kong
 Password: kong
+```
+
+```
+curl http://localhost:8001/services
 ```

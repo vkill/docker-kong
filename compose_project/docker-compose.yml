@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  kong:
+    networks:
+      - default
+
+  kong-database:
+    networks:
+      - default
+
+  kong-dashboard:
+    networks:
+      - default
+
+networks:
+  default:

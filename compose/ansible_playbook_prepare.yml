@@ -31,6 +31,12 @@
         group: "docker"
         mode: 0777
 
+    - name: Ensure dotenv_dir exists
+      file:
+        state: directory
+        path: "{{ dotenv_dir }}"
+        mode: 0755
+
     - name: Touch .env
       file:
         path: "{{ dotenv_dir }}/.env"

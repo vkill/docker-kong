@@ -23,6 +23,14 @@
         - ../compose/docker-compose.override.yml
         - docker-compose.yml
 
+    - name: Copy scripts
+      template:
+        src: "{{ item }}"
+        dest: "{{ kong_root_dir }}/compose_project/{{ item }}"
+        mode: 0755
+      with_items:
+        - docker-compose.sh
+
     - name: Add logrotate conf
       template:
         src: "logrotate.j2"

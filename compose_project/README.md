@@ -17,7 +17,7 @@ bash docker-compose.sh up
 xdg-open http://localhost:8080/
 
 Username: kong
-Password: kong
+Password: ENV["KONG_DASHBOARD_PASSWORD"]
 ```
 
 ```

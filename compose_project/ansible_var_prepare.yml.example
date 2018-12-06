@@ -1,15 +1,15 @@
 ---
-root_dir: "/data_kong"
+kong_root_dir: "/data_kong"
 
 ###
 
-dotenv_dir: "{{ root_dir }}"
+dotenv_dir: "{{ kong_root_dir }}"
 
-kong_log_dir: "{{ root_dir }}/kong_log"
+kong_log_dir: "{{ kong_root_dir }}/kong_log"
 
 kong_postgres_password: "kong"
-kong_postgres_data_dir: "{{ root_dir }}/kong_postgres_data"
-kong_postgres_log_dir: "{{ root_dir }}/kong_postgres_log"
+kong_postgres_data_dir: "{{ kong_root_dir }}/kong_postgres_data"
+kong_postgres_log_dir: "{{ kong_root_dir }}/kong_postgres_log"
 
 kong_dashboard_port: 8080
 kong_dashboard_password: "kong"

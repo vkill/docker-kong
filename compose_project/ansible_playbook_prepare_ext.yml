@@ -7,7 +7,7 @@
     - name: Mkdir dirs
       file:
         state: directory
-        path: "{{ root_dir }}/{{ item }}"
+        path: "{{ kong_root_dir }}/{{ item }}"
         mode: 0755
       with_items:
         - compose
@@ -16,12 +16,12 @@
     - name: Copy files
       template:
         src: "{{ item }}"
-        dest: "{{ kong_root }}/{{ item }}"
+        dest: "{{ kong_root_dir }}/compose_project/{{ item }}"
         mode: 0644
       with_items:
-        - compose/docker-compose.yml
-        - compose/docker-compose.override.yml
-        - compose_project/docker-compose.yml
+        - ../compose/docker-compose.yml
+        - ../compose/docker-compose.override.yml
+        - docker-compose.yml
 
     - name: Add logrotate conf
       template:

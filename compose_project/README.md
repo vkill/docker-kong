@@ -6,7 +6,7 @@ cp ansible_var_prepare.yml.example ansible_var_prepare.yml
 ```
 
 ```
-bash ansible_playbook_prepare.sh -i ansible_hosts
+bash ansible_playbook_prepare.sh -e "@ansible_var_prepare.yml" -i ansible_hosts
 ```
 
 ```

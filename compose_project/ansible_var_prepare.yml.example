@@ -1,8 +1,6 @@
 ---
 kong_root_dir: "/data_kong"
 
-###
-
 dotenv_dir: "{{ kong_root_dir }}/compose_project"
 
 kong_log_dir: "{{ kong_root_dir }}/kong_log"
@@ -11,5 +9,5 @@ kong_postgres_password: "{{ lookup('env', 'KONG_POSTGRES_PASSWORD') }}"
 kong_postgres_data_dir: "{{ kong_root_dir }}/kong_postgres_data"
 kong_postgres_log_dir: "{{ kong_root_dir }}/kong_postgres_log"
 
-kong_dashboard_port: 3001
+kong_dashboard_port: 8080
 kong_dashboard_password: "{{ lookup('env', 'KONG_DASHBOARD_PASSWORD') }}"

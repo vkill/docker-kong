@@ -1,7 +1,7 @@
 ---
 kong_root_dir: "/data_kong"
 
-dotenv_dir: "{{ kong_root_dir }}/compose_project"
+kong_dotenv_dir: "{{ kong_root_dir }}/compose_project"
 
 kong_log_dir: "{{ kong_root_dir }}/kong_log"
 

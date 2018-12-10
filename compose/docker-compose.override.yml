@@ -20,17 +20,17 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ${KONG_LOG_DIR:-/opt/data_kong/kong_log}
+      device: ${KONG_LOG_DIR:-/data/data_kong/kong_log}
       o: bind
   kong_postgres_log:
     driver: local
     driver_opts:
       type: none
-      device: ${KONG_POSTGRES_LOG_DIR:-/opt/data_kong/kong_postgres_log}
+      device: ${KONG_POSTGRES_LOG_DIR:-/data/data_kong/kong_postgres_log}
       o: bind
   kong_postgres_data:
     driver: local
     driver_opts:
       type: none
-      device: ${KONG_POSTGRES_DATA_DIR:-/opt/data_kong/kong_postgres_data}
+      device: ${KONG_POSTGRES_DATA_DIR:-/data/data_kong/kong_postgres_data}
       o: bind

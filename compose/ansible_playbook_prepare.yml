@@ -62,7 +62,7 @@
         - key: "KONG_DASHBOARD_PORT"
           value: "{{ kong_dashboard_port }}"
         - key: "KONG_DASHBOARD_PASSWORD"
-          value: "{{ kong_dashboard_password }}"
+          value: "\"{{ kong_dashboard_password }}\""
 
     - name: Touch postgresql.conf
       file:

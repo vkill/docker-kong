@@ -54,7 +54,7 @@
         - key: "KONG_LOG_DIR"
           value: "{{ kong_log_dir }}"
         - key: "KONG_POSTGRES_PASSWORD"
-          value: "{{ kong_postgres_password }}"
+          value: "\"{{ kong_postgres_password }}\""
         - key: "KONG_POSTGRES_DATA_DIR"
           value: "{{ kong_postgres_data_dir }}"
         - key: "KONG_POSTGRES_LOG_DIR"

@@ -2,7 +2,7 @@ version: '3'
 
 services:
   kong:
-    image: "${KONG_DOCKER_TAG:-kong:0.14-alpine}"
+    image: "${KONG_DOCKER_TAG:-kong:0.15-alpine}"
     command: kong start --run-migrations
     depends_on:
       - kong-database
@@ -29,7 +29,7 @@ services:
       - kong
 
   kong-database:
-    image: "${KONG_POSTGRES_DOCKER_TAG:-postgres:11.1-alpine}"
+    image: "${KONG_POSTGRES_DOCKER_TAG:-postgres:11-alpine}"
     volumes:
       - kong_postgres_data:/var/lib/postgresql/data
     environment:

@@ -3,7 +3,7 @@ version: '3'
 services:
   kong:
     image: "${KONG_DOCKER_TAG:-kong:0.15-alpine}"
-    command: kong start --run-migrations
+    command: kong start
     depends_on:
       - kong-database
     environment:
